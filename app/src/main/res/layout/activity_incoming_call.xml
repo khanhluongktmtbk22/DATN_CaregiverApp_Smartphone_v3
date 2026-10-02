@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#F0000011"
+    android:paddingStart="40dp"
+    android:paddingEnd="40dp">
+
+    <!-- Pulse ring + avatar -->
+    <FrameLayout
+        android:layout_width="130dp"
+        android:layout_height="130dp">
+
+        <View
+            android:id="@+id/pulseRing"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:background="@drawable/vc_bg_circle_avatar"
+            android:alpha="0.3" />
+
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:background="@drawable/vc_bg_circle_avatar"
+            android:padding="22dp"
+            android:src="@drawable/vc_ic_robot"
+            android:contentDescription="Robot" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Robot đang gọi đến..."
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-medium" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Cuộc gọi video từ Robot tại nhà"
+        android:textColor="#CCB0B0C0"
+        android:textSize="15sp" />
+
+    <!-- Decline / Accept -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Decline -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="64dp">
+
+            <ImageButton
+                android:id="@+id/btnDeclineCall"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/vc_bg_circle_end_call"
+                android:src="@drawable/vc_ic_call_end"
+                android:padding="18dp"
+                android:contentDescription="Từ chối" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Từ chối"
+                android:textColor="#CCCCCC"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Accept -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btnAcceptCall"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/vc_bg_circle_accept"
+                android:src="@drawable/vc_ic_phone_accept"
+                android:padding="18dp"
+                android:contentDescription="Nhận" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Nhận"
+                android:textColor="#CCCCCC"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Joystick knob circle -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <!-- Trắng xám có độ trong suốt (Khoảng 60% alpha) -->
+    <solid android:color="#99E0E0E0" />
+    <stroke
+        android:width="1.5dp"
+        android:color="#B3FFFFFF" />
+</shape>

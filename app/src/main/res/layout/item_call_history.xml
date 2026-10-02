@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    item_call_history.xml  — Card một cuộc gọi trong lịch sử
+
+    Layout:
+    ┌─────────────────────────────────────────────────────────┐
+    │  [●]  icon điện thoại  Gọi từ Caregiver       [00:02:22]│
+    │  icon  ←icon phone→  sub: Ngày giờ            badge:   │
+    │                       dd/MM/yyyy HH:mm         "Đã kết" │
+    └─────────────────────────────────────────────────────────┘
+-->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginTop="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Icon circle -->
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ic_call_history_bg">
+
+            <ImageView
+                android:id="@+id/ivCallIcon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_phone_24"
+                android:tint="#FFFFFF" />
+
+        </FrameLayout>
+
+        <!-- Text info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCallInitiator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gọi từ Caregiver"
+                android:textColor="#1A2634"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCallTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="14/08/2026  15:30"
+                android:textColor="#7F8C8D"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- Right side: duration + status badge -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <TextView
+                android:id="@+id/tvCallDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="02:22"
+                android:textColor="#2567E8"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCallStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:text="Đã kết"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                android:background="@drawable/ic_status_badge_ended" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

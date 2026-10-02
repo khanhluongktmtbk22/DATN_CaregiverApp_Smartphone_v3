@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_sidebar_selected">#34495E</color>
+    <color name="fall_alert_falling">#D9363E</color>
+    <color name="fall_alert_lying">#E67E22</color>
+</resources>

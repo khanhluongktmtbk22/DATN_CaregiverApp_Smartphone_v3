@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Badge hình viên thuốc đỏ → badge xác suất té ngã -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFEE3333" />
+    <corners android:radius="12dp" />
+</shape>

@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A1A">
+
+    <!-- ===== Remote video fullscreen (Robot feed) – layer thấp nhất ===== -->
+    <org.webrtc.SurfaceViewRenderer
+        android:id="@+id/remoteSurfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
+
+    <!-- ===== Status chip top-center ===== -->
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="#99000000"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:text="Sẵn sàng kết nối"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:fontFamily="sans-serif-medium" />
+
+    <!-- ================================================================ -->
+    <!-- IDLE STATE                                                        -->
+    <!-- ================================================================ -->
+    <LinearLayout
+        android:id="@+id/layoutIdle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#0A0A1A"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp">
+
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/vc_bg_circle_avatar"
+            android:padding="20dp"
+            android:src="@drawable/vc_ic_robot"
+            android:contentDescription="Robot avatar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Gọi đến Robot"
+            android:textColor="#E0E0E0"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Kết nối trực tiếp với camera Robot tại nhà"
+            android:textColor="#7E7E9A"
+            android:textSize="14sp"
+            android:gravity="center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCallRobot"
+            android:layout_width="210dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="36dp"
+            android:text="Gọi Video Robot"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            app:backgroundTint="#1565C0"
+            app:cornerRadius="26dp"
+            app:icon="@drawable/vc_ic_videocall"
+            app:iconGravity="textStart"
+            app:iconTint="#FFFFFF"
+            app:iconPadding="8dp" />
+
+    </LinearLayout>
+
+    <!-- ================================================================ -->
+    <!-- INCOMING CALL OVERLAY (giong Zalo)                               -->
+    <!-- ================================================================ -->
+    <LinearLayout
+        android:id="@+id/layoutIncomingCall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:background="#F0000000"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal">
+
+            <View
+                android:id="@+id/pulseRing"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:background="@drawable/vc_bg_circle_avatar"
+                android:alpha="0.3" />
+
+            <ImageView
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_gravity="center"
+                android:background="@drawable/vc_bg_circle_avatar"
+                android:padding="20dp"
+                android:src="@drawable/vc_ic_robot"
+                android:contentDescription="Robot calling" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Robot đang gọi đến..."
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Cuộc gọi video từ Robot tại nhà"
+            android:textColor="#B0B0C0"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginEnd="52dp">
+
+                <ImageButton
+                    android:id="@+id/btnDeclineCall"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:background="@drawable/vc_bg_circle_end_call"
+                    android:src="@drawable/vc_ic_call_end"
+                    android:padding="18dp"
+                    android:contentDescription="Tu choi cuoc goi" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Từ chối"
+                    android:textColor="#CCCCCC"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btnAcceptCall"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:background="@drawable/vc_bg_circle_accept"
+                    android:src="@drawable/vc_ic_phone_accept"
+                    android:padding="18dp"
+                    android:contentDescription="Nhan cuoc goi" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Nhận"
+                    android:textColor="#CCCCCC"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ================================================================ -->
+    <!-- ACTIVE CALL: NÚT MỞ RỘNG (▶) + PANEL NGANG BÊN TRÁI            -->
+    <!-- Hiển thị khi layoutCallControls visible                          -->
+    <!-- ================================================================ -->
+
+    <!-- Container bao gồm nút toggle + panel -->
+    <LinearLayout
+        android:id="@+id/layoutCallControls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <!-- ── Nút toggle (▶/◀) – luôn hiển thị khi call active ── -->
+        <ImageButton
+            android:id="@+id/btnExpandControls"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/vc_bg_expand_btn"
+            android:src="@drawable/vc_ic_expand_panel"
+            android:padding="8dp"
+            android:contentDescription="Mo/Thu panel dieu khien"
+            android:scaleType="centerInside" />
+
+        <!-- ── Panel ngang chứa 4 nút điều khiển (ẩn mặc định, sổ ra khi bấm toggle) ── -->
+        <LinearLayout
+            android:id="@+id/layoutExpandedControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/vc_bg_panel_side"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+
+            <!-- Mic toggle -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginEnd="12dp">
+                <ImageButton
+                    android:id="@+id/btnToggleMic"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/vc_bg_circle_control"
+                    android:src="@drawable/vc_ic_mic_on"
+                    android:padding="12dp"
+                    android:contentDescription="Toggle microphone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Micro"
+                    android:textColor="#CCCCCC"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- Camera toggle -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginEnd="12dp">
+                <ImageButton
+                    android:id="@+id/btnToggleCamera"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/vc_bg_circle_control"
+                    android:src="@drawable/vc_ic_cam_on"
+                    android:padding="12dp"
+                    android:contentDescription="Toggle camera" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Camera"
+                    android:textColor="#CCCCCC"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- Joystick toggle -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginEnd="12dp">
+                <ImageButton
+                    android:id="@+id/btnToggleJoystick"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/vc_bg_circle_control"
+                    android:src="@drawable/ic_joystick_24"
+                    android:tint="#FFFFFFFF"
+                    android:padding="10dp"
+                    android:contentDescription="Toggle joystick" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Điều khiển"
+                    android:textColor="#CCCCCC"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- Auto-Follow toggle -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginEnd="12dp">
+                <ImageButton
+                    android:id="@+id/btnToggleAutoFollow"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/vc_bg_circle_control"
+                    android:src="@drawable/ic_auto_follow_24"
+                    android:tint="#FFFFFFFF"
+                    android:padding="10dp"
+                    android:alpha="0.6"
+                    android:contentDescription="Toggle auto follow" />
+                <TextView
+                    android:id="@+id/tvAutoFollowLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Bám theo"
+                    android:textColor="#CCCCCC"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- End call -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageButton
+                    android:id="@+id/btnEndCall"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:background="@drawable/vc_bg_circle_end_call"
+                    android:src="@drawable/vc_ic_call_end"
+                    android:padding="13dp"
+                    android:contentDescription="End call" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Kết thúc"
+                    android:textColor="#CCCCCC"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ================================================================ -->
+    <!-- VIRTUAL JOYSTICK OVERLAY – góc bottom-left                        -->
+    <!-- ================================================================ -->
+    <FrameLayout
+        android:id="@+id/layoutJoystick"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone">
+
+        <!-- Base (vòng tròn nền) -->
+        <View
+            android:id="@+id/joystickBase"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:background="@drawable/vc_bg_joystick_base"
+            android:alpha="0.85" />
+
+        <!-- Nhãn hướng -->
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/vc_ic_joystick_direction"
+            android:contentDescription="Tiến lên" />
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/vc_ic_joystick_direction"
+            android:rotation="180"
+            android:contentDescription="Lùi lại" />
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical|start"
+            android:layout_marginStart="6dp"
+            android:src="@drawable/vc_ic_joystick_direction"
+            android:rotation="270"
+            android:contentDescription="Sang trái" />
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/vc_ic_joystick_direction"
+            android:rotation="90"
+            android:contentDescription="Sang phải" />
+
+        <!-- Knob (nút điều hướng) -->
+        <View
+            android:id="@+id/joystickKnob"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="@drawable/vc_bg_joystick_knob"
+            android:elevation="4dp" />
+
+    </FrameLayout>
+
+    <!--
+        Local PiP card – đặt CUỐI CÙNG trong FrameLayout để luôn hiển lên trên
+        tất cả các overlay khác. Ẩn khi idle, hiển khi call active.
+    -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/localVideoCard"
+        android:layout_width="110dp"
+        android:layout_height="148dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="12dp"
+        android:visibility="gone"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="12dp"
+        app:strokeColor="#80FFFFFF"
+        app:strokeWidth="1dp">
+
+        <org.webrtc.SurfaceViewRenderer
+            android:id="@+id/localSurfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>
